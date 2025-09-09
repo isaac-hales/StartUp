@@ -28,12 +28,12 @@ We all love the fun and random dice game **Qwixx**! It's fun, with just the perf
 ```mermaid
 
 graph TD;
-    Website-->Player 1;
-    Player 1-->Website;
-    Website-->Player 2;
-    Website-->Player 3;
-    Player 2 --> Website;
-    Player 3 --> Website;
+    Website-->Player 1
+    Player 1-->Website
+    Website-->Player 2
+    Website-->Player 3
+    Player 2 --> Website
+    Player 3 --> Website
 
 ```
 
