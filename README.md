@@ -26,13 +26,15 @@ We all love the fun and random dice game **Qwixx**! It's fun, with just the perf
 
 
 ```mermaid
-sequenceDiagram
-    actor Player 1;
-    actor Player 2;
-    actor Player 3;
-    actor Website;
-    Player 1->>Website: Send choice of dice roll to website;
-    Website NEWLINE AS DOTTED_OPEN_ARROW Player 1: Sharing that choice with all players;
+actor "Player 1" as P1
+actor "Player 2" as P2
+actor "Player 3" as P3
+actor "Website" as WS
+
+P1 ->> WS: Send choice of dice roll to website
+WS -->> P1: Share choice with Player 1
+WS -->> P2: Share choice with Player 2
+WS -->> P3: Share choice with Player 3
 ```
 
 ### Key features
