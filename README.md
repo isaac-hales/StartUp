@@ -32,7 +32,7 @@ sequenceDiagram
     actor Player 3;
     actor Website;
     Player 1->>Website: Send choice of dice roll to website;
-    Website<<-Player 1: Sharing that choice with all players;
+    Website NEWLINE AS DOTTED_OPEN_ARROW Player 1: Sharing that choice with all players;
 ```
 
 ### Key features
