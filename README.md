@@ -27,12 +27,12 @@ We all love the fun and random dice game **Qwixx**! It's fun, with just the perf
 
 ```mermaid
 sequenceDiagram
-    actor Player 1
-    actor Player 2
-    actor Player 3
-    actor Website
-    Player 1->>Website: Send choice of dice roll to website
-    Website<--Player 1: Sharing that choice with all players
+    actor Player 1;
+    actor Player 2;
+    actor Player 3;
+    actor Website;
+    Player 1->>Website: Send choice of dice roll to website;
+    Website<<-Player 1: Sharing that choice with all players;
 ```
 
 ### Key features
