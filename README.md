@@ -32,12 +32,12 @@ actor Player1
 actor Player2
 actor Player3
 
-    Website: Send choice to player->>Player1
-    Player1->>Website
-    Website->>Player2
-    Website->>Player3
-    Player2->>Website
-    Player3->>Website
+    Website ->>Player1 : Send choice to player
+    Player1->>Website : Player returns choice
+    Website->>Player2 : Website Shares choice
+    Website->>Player3 : Website Shares choice
+    Player2->>Website : Website Shares choice
+    Player3->>Website: Website Shares choice
 
 ```
 
