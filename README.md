@@ -25,7 +25,6 @@ We all love the fun and random dice game **Qwixx**! It's fun, with just the perf
 ![Qwixx Website](Start_Up_Design.jpg)
 
 
-
 ```mermaid
 sequenceDiagram
     actor You
@@ -35,9 +34,13 @@ sequenceDiagram
 
 ### Key features
 
-- Describe your key feature
-- Describe your key feature
-- Describe your key feature
+- Quick / Easy login
+- Generate a "room key" to allow friends with the same key from afar
+- Display the numbers and let the users choose what they want. 
+- Play with friends across the country
+- Automate the score tracking and summing up the points
+- Display a probability of each number getting rolled
+
 
 ### Technologies
 
