@@ -21,13 +21,13 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 - [x] Proper use of Markdown
 - [x] A concise and compelling elevator pitch
-- [ ] Description of key features
-- [ ] Description of how you will use each technology
+- [x] Description of key features
+- [x] Description of how you will use each technology
 - [ ] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
 
 ### Elevator pitch
 
-Betrayal is a superb game to play with friends and family. With it's campy style of **horror**, to it's constant and wild scenarios, no two games of Betrayal are quite alike! The problem? Keeping track of all of the tokens and coins that are used for everything! Therefore, we'll leave it to the computer to do! Now we let the computer do all of the hardwork (*keeping track of tokens, managing the deck, getting everything ready for events, the Haunt, etc*), while we have all the ***fun*** playing! And with an online version, we're not limited to just our friends in person, but instead we can play with each other accross town, or even the country! 
+We all love the fun and random dice game **Qwixx**! It's fun, with just the perfect mixture of skill and luck that no two games are alike! The problem? Finding people to play with. This will solve that, by making a version of the game playable online. That way we're not limited to just our friends in person, but instead we can play with each other accross town, or even the country!
 
 ### Design
 
