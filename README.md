@@ -31,7 +31,8 @@ sequenceDiagram
     actor Player 2
     actor Player 3
     actor Website
-    Player 1->>Website: Send choice to website
+    Player 1->>Website: Send choice of dice roll to website
+    Website<--Player 1: Sharing that choice with all players
 ```
 
 ### Key features
