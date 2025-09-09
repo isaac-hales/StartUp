@@ -22,7 +22,8 @@ We all love the fun and random dice game **Qwixx**! It's fun, with just the perf
 
 ### Design
 
-![Design image](placeholder.png)
+![Design image](Start Up Design.jpg)
+
 
 
 ```mermaid
