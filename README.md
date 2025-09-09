@@ -1,4 +1,4 @@
-# Betrayal at House on the Hill Online
+# Qwixx Online
 
 [My Notes](notes.md)
 
@@ -52,12 +52,12 @@ sequenceDiagram
 
 I am going to use the required technologies in the following ways.
 
-- **HTML** - Description here
-- **CSS** - Description here
-- **React** - Description here
-- **Service** - Description here
-- **DB/Login** - Description here
-- **WebSocket** - Description here
+- **HTML** - There will be three HTML Pages. One for logging into the website, one for getting people to join, and one for playing the game (the sheet of paper, and the rolling dice.
+- **CSS** - Helping the webpage look good on different size pages. This will also be for displaying the dice rolls. 
+- **React** - This will provide the login, as well as the choosing dice and 
+- **Service** - Backend service with endpoints for: An API will be used to randomly generate the dice rolls. 
+- **DB/Login** - Store the users, store their choices. Register and login the users. Credentials stored in the database. 
+- **WebSocket** - As each player rolls, the combination of the white dice will be sent to other players, letting them choose to accept it and use it, or to decline it and hold off. 
 
 ## 🚀 AWS deliverable
 
