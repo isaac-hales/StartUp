@@ -1,14 +1,5 @@
 # Qwixx Online
 
-[My Notes](notes.md)
-
-  
-
-
-
-
-> [!NOTE]
-
 > [!NOTE]
 >  If you are not familiar with Markdown then you should review the [documentation](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) before continuing.
 
