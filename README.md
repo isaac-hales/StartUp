@@ -32,7 +32,7 @@ actor Player1
 actor Player2
 actor Player3
 
-    Website->>Player1
+    Website: Send choice to player->>Player1
     Player1->>Website
     Website->>Player2
     Website->>Player3
