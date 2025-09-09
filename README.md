@@ -27,17 +27,12 @@ We all love the fun and random dice game **Qwixx**! It's fun, with just the perf
 
 ```mermaid
 
-@startuml
-actor "Player 1" as P1
-actor "Player 2" as P2
-actor "Player 3" as P3
-actor "Website" as WS
+graph TD;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;
 
-P1 ->> WS: Send choice of dice roll to website
-WS -->> P1: Share choice with Player 1
-WS -->> P2: Share choice with Player 2
-WS -->> P3: Share choice with Player 3
-@enduml
 ```
 
 ### Key features
