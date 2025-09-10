@@ -9,7 +9,10 @@
 - [MDN](https://developer.mozilla.org)
 
 ## AWS
+Go to schedule, and then go to WS EC2.
 
+
+No way to recover the server when you lose your key. If you lose it, you have to restart completely. 
 
 ## Caddy
 
