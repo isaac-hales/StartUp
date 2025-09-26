@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<style>
+    body {background-color: gray;}
+    h1 {color: black;}
+
+</style>
+
+<html>
+    <title> Qwixx Online Login</title>
+    <header> 
+        <p style="color: blue;"><strong> Navigation to other pages </strong></p>
+        <nav>
+            <a href = "index.html"> HOME <br></a>
+            <a href = "login.html"> Login Page<br></a>
+            <a href = "game.html"> Play the game!<br></a>
+        </nav>
+        <div class="players">
+                    Player:
+        <span class="player-name"> User_Name </span>
+        </div>
+    </header>
+    <body>
+        <main>
+            <img src="dice.png" width="335", height="316">
+            <section>
+            <h1> LOGIN PAGE </h1>
+                <form action="formSubmit.html" method="post">
+                    <ul>
+                        <li>
+                            <label for="email">Email: </label>
+                            <input type="email" id="email" name="varEmail" placeholder="Your Email Here" required pattern="[Aa].*" style="color:rgb(255,220,0);"/>
+                        </li>
+                        <li>
+                            <label for="player-name">User Name: </label>
+                            <input type="text" id="player-name" name="player-name" placeholder="Your Name Here" required pattern="[Aa].*" style="color:rgb(255,0,0);" />
+                        </li>
+                        <li>
+                            <label for="password">Password: </label>
+                            <input type="password" id="password" name="varPassword" placeholder="Your Password Here" required pattern="[Aa].*"style="color:rgb(50,240,100);">
+                        </li>
+                    </ul>
+                </form>
+            </section>
+        </main>
+        
+    </body>
+    <footer>
+    <div style="text-align: right;"><a href = "https://github.com/isaac-hales"> My GitHub repo </a></div>
+  </footer>
+
+</html>
