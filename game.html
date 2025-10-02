@@ -1,87 +1,201 @@
 <!DOCTYPE html>
-<style>
-    body {background-color: gray;}
-    h1 {color: black;}
-
-</style>
-
-<head><head>
+<html lang="en">
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-  </head>
+    <title>Qwixx!</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <style>
+        body {
+            background-color: gray;
+        }
+        h1 {
+            color: black;
+        }
+    </style>
 </head>
+<body>
 
-<html>
-    <title> Qwixx!</title>
     <header> 
-        <p style="color: blue;"><strong> Navigation to other pages </strong></p>
+        <p style="color: blue;"><strong>Navigation to other pages</strong></p>
         <nav>
-            <a href = "index.html"> HOME <br></a>
-            <a href = "login.html"> Login Page<br></a>
-            <a href = "game.html"> Play the game<br></a>
+            <a href="index.html">HOME<br></a>
+            <a href="login.html">Login Page<br></a>
+            <a href="game.html">Play the game<br></a>
         </nav>
         <div class="players">
-                    Player:
-                <span class="player-name">Mystery player</span>
+            Player: <span class="player-name">Mystery player</span>
         </div>
-        <div id="realTimeData"> Loading real-time data... </div>
+        <div id="realTimeData">Loading real-time data...</div>
         <input type="text" id="messageInput" placeholder="Type your message here">
     </header>
+
     <main>
-        <!-- This is will the programming will go. Now how do I do that? I haven't the foggiest idea. -->
-        <img src="Qwixx_Sheet.png" width="640", height="402">
-        <p></p>
+        <button type="button" class="btn btn-info" data-bs-toggle="collapse" data-bs-target="#rulesInfo">
+            Info 
+        </button>
+        <div class="collapse mt-3" id="rulesInfo">
+            <div class="card card-body">
+                <h5>How to Play Qwixx</h5>
+                <p><strong>Objective:</strong> Score the most points by marking off numbers in four colored rows.</p>
+                
+                <p><strong>Basic Rules:</strong></p>
+                <ul>
+                    <li>On your turn, roll all 6 dice (2 white + 4 colored)</li>
+                    <li>Everyone can use the sum of the two white dice to mark a number</li>
+                    <li>The active player can also combine one white die with one colored die</li>
+                    <li>Numbers must be marked from left to right in each row</li>
+                    <li>Red and yellow go from 2-12 (left to right)</li>
+                    <li>Green and blue go from 12-2 (right to left)</li>
+                    <li>You cannot go backwards - once you skip a number, it's locked out</li>
+                    <li>If you can't or don't want to mark anything, take a penalty</li>
+                </ul>
+                
+                <p><strong>Winning:</strong> The game ends when two rows are locked. Count your points - the highest score wins!</p>
+            </div>
+        </div>
+        <br>
+        <img src="Qwixx_Sheet.png" width="640" height="400">
+        <br>
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+            <!-- 2 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                        2 Probability
+                    </button>
+                </h2>
+                <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">The probability of rolling a 2 is ~<strong>2.78%</strong></div>
+                </div>
+            </div>
+
+            <!-- 3 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                        3 Probability
+                    </button>
+                </h2>
+                <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">The probability of rolling a 3 is ~<strong>5.56%</strong></div>
+                </div>
+            </div>
+
+            <!-- 4 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingFour">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+                        4 Probability
+                    </button>
+                </h2>
+                <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">The probability of rolling a 4 is ~<strong>8.33%</strong></div>
+                </div>
+            </div>
+
+            <!-- 5 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingFive">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive">
+                        5 Probability
+                    </button>
+                </h2>
+                <div id="flush-collapseFive" class="accordion-collapse collapse" aria-labelledby="flush-headingFive" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">The probability of rolling a 5 is ~<strong>11.11%</strong></div>
+                </div>
+            </div>
+
+            <!-- 6 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingSix">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseSix" aria-expanded="false" aria-controls="flush-collapseSix">
+                        6 Probability
+                    </button>
+                </h2>
+                <div id="flush-collapseSix" class="accordion-collapse collapse" aria-labelledby="flush-headingSix" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">The probability of rolling a 6 is ~<strong>13.89%</strong></div>
+                </div>
+            </div>
+
+            <!-- 7 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingSeven">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseSeven" aria-expanded="false" aria-controls="flush-collapseSeven">
+                        7 Probability
+                    </button>
+                </h2>
+                <div id="flush-collapseSeven" class="accordion-collapse collapse" aria-labelledby="flush-headingSeven" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">The probability of rolling a 7 is ~<strong>16.67%</strong></div>
+                </div>
+            </div>
+
+            <!-- 8 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingEight">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseEight" aria-expanded="false" aria-controls="flush-collapseEight">
+                        8 Probability
+                    </button>
+                </h2>
+                <div id="flush-collapseEight" class="accordion-collapse collapse" aria-labelledby="flush-headingEight" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">The probability of rolling an 8 is ~<strong>13.89%</strong></div>
+                </div>
+            </div>
+
+            <!-- 9 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingNine">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseNine" aria-expanded="false" aria-controls="flush-collapseNine">
+                        9 Probability
+                    </button>
+                </h2>
+                <div id="flush-collapseNine" class="accordion-collapse collapse" aria-labelledby="flush-headingNine" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">The probability of rolling a 9 is ~<strong>11.11%</strong></div>
+                </div>
+            </div>
+
+            <!-- 10 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingTen">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTen" aria-expanded="false" aria-controls="flush-collapseTen">
+                        10 Probability
+                    </button>
+                </h2>
+                <div id="flush-collapseTen" class="accordion-collapse collapse" aria-labelledby="flush-headingTen" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">The probability of rolling a 10 is ~<strong>8.33%</strong></div>
+                </div>
+            </div>
+
+            <!-- 11 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingEleven">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseEleven" aria-expanded="false" aria-controls="flush-collapseEleven">
+                        11 Probability
+                    </button>
+                </h2>
+                <div id="flush-collapseEleven" class="accordion-collapse collapse" aria-labelledby="flush-headingEleven" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">The probability of rolling an 11 is ~<strong>5.56%</strong></div>
+                </div>
+            </div>
+
+            <!-- 12 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingTwelve">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwelve" aria-expanded="false" aria-controls="flush-collapseTwelve">
+                        12 Probability
+                    </button>
+                </h2>
+                <div id="flush-collapseTwelve" class="accordion-collapse collapse" aria-labelledby="flush-headingTwelve" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">The probability of rolling a 12 is ~<strong>2.78%</strong></div>
+                </div>
+            </div>
+        </div>
     </main>
+    <!-- Bootstrap JS (required for accordion to work) -->
+
+</body>
 
     <footer>
-        <!-- Create an option to click a button and display probabilities of specific dice rolls (rolling a 2,3,4 etc) -->
-         <div class="accordion-item">
-    <h2 class="accordion-header" id="heading11">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-        <strong > Probabilities. Just click on which one you want to see! </strong> 
-      </button>
-    </h2>
-       <div class="accordion" id="accordionExample">
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="headingOne">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                
-            </button>
-            </h2>
-            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-            <div class="accordion-body">
-                <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-            </div>
-            </div>
-        </div>
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="headingTwo">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                Accordion Item #2
-            </button>
-            </h2>
-            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-            <div class="accordion-body">
-                <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-            </div>
-            </div>
-        </div>
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="headingThree">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                Accordion Item #3
-            </button>
-            </h2>
-            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-            <div class="accordion-body">
-                <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-            </div>
-            </div>
-        </div>
-        </div>
-        <div style="text-align: right;"><a href = "https://github.com/isaac-hales"> My GitHub repo </a></div>
-    </footer>
-
-</html>
+    <div style="text-align: right;"><a href = "https://github.com/isaac-hales"> My GitHub repo </a></div>
+  </footer>
