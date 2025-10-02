@@ -9,14 +9,26 @@
 
 <html>
     <title> Qwixx Online Homepage</title>
-    <header> 
-        <p style="color: blue;"><strong> Navigation to other pages </strong></p>
-        <nav>
-            <a href = "index.html"> HOME <br></a>
-            <a href = "login.html"> Login Page<br></a>
-            <a href = "game.html"> Play the game!<br></a>
-        </nav>
-        
+    <header style="background-color: #333; padding: 20px; margin-bottom: 20px;">
+        <div class="container">
+            <h1 style="color: white; margin-bottom: 15px;">Qwixx Game</h1>
+            
+            <nav style="margin-bottom: 15px;">
+                <a href="index.html" style="color: #4da6ff; text-decoration: none; margin-right: 20px; font-weight: bold;">HOME</a>
+                <a href="login.html" style="color: #4da6ff; text-decoration: none; margin-right: 20px; font-weight: bold;">Login Page</a>
+                <a href="game.html" style="color: #4da6ff; text-decoration: none; font-weight: bold;">Play the game</a>
+            </nav>
+            
+            <div style="color: white; margin-bottom: 10px;">
+                <strong>Player:</strong> <span class="player-name" style="color: #ffd700;">Mystery player</span>
+            </div>
+            
+            <div id="realTimeData" style="color: #ddd; margin-bottom: 10px;">Loading real-time data...</div>
+            
+            <div>
+                <input type="text" id="messageInput" placeholder="Type your message here" style="padding: 8px; border-radius: 4px; border: 1px solid #ccc; width: 300px;">
+            </div>
+        </div>
     </header>
 
     <main>
@@ -28,8 +40,15 @@
         <p>This was made as a way to provide a way to play with friends nearby and afar.</p>
         <img src="Qwixx.webp" width="214", height="300">
     </body>
-    <footer>
-    <div style="text-align: right;"><a href = "https://github.com/isaac-hales"> My GitHub repo </a></div>
-  </footer>
+    <footer style="background-color: #333; padding: 20px; margin-top: 40px; text-align: center; color: white;">
+    <div class="container">
+        <p style="margin-bottom: 10px;">
+            <a href="https://github.com/isaac-hales" style="color: #4da6ff; text-decoration: none; font-weight: bold;">
+                My GitHub Repository
+            </a>
+        </p>
+        <p style="font-size: 0.9em; color: #aaa; margin-top: 10px;">Created for CS260</p>
+    </div>
+</footer>
 
 </html>
