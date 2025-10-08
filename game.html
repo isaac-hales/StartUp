@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    
     <title>Qwixx!</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
@@ -63,144 +64,36 @@
                 <p><strong>Winning:</strong> The game ends when two rows are locked. Count your points - the highest score wins!</p>
             </div>
         </div>
+        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#probabilitiyInfo" aria-expanded="false" aria-controls="probabilitiyInfo">
+            Show Probability Information
+        </button>
+
+        <div class="collapse mt-3" id="probabilitiyInfo">
+            <div class="card card-body">
+                <h5>Probabilities of Each Number</h5>
+                <p> This is the probability of getting the number with either two white dice, or a white die and a colored one.</p>
+                <ul>
+                    <li><strong>2:</strong> 7.4%</li>
+                    <li><strong>3:</strong> 13.9%</li>
+                    <li><strong>4:</strong> 13.9%</li>
+                    <li><strong>5:</strong> 27.8%</li>
+                    <li><strong>6:</strong> 35.2%</li>
+                    <li><strong>7:</strong> 41.7%</li>
+                    <li><strong>8:</strong> 35.2%</li>
+                    <li><strong>9:</strong> 27.8%</li>
+                    <li><strong>10:</strong> 21.3%</li>
+                    <li><strong>11:</strong> 13.9%</li>
+                    <li><strong>12:</strong> 7.4%</li>
+                </ul>
+                <p> Notice that <strong>7</strong> is the most probable number to roll. </p>
+            </div>
+        </div>
         <br>
         <img src="Qwixx_Sheet.png" width="640" height="400">
         <br>
-        <div class="accordion accordion-flush" id="accordionFlushExample">
-            <!-- 2 -->
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="flush-headingTwo">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                        2 Probability
-                    </button>
-                </h2>
-                <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-                    <div class="accordion-body">The probability of rolling a 2 is ~<strong>2.78%</strong></div>
-                </div>
-            </div>
-
-            <!-- 3 -->
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="flush-headingThree">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-                        3 Probability
-                    </button>
-                </h2>
-                <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
-                    <div class="accordion-body">The probability of rolling a 3 is ~<strong>5.56%</strong></div>
-                </div>
-            </div>
-
-            <!-- 4 -->
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="flush-headingFour">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
-                        4 Probability
-                    </button>
-                </h2>
-                <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
-                    <div class="accordion-body">The probability of rolling a 4 is ~<strong>8.33%</strong></div>
-                </div>
-            </div>
-
-            <!-- 5 -->
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="flush-headingFive">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive">
-                        5 Probability
-                    </button>
-                </h2>
-                <div id="flush-collapseFive" class="accordion-collapse collapse" aria-labelledby="flush-headingFive" data-bs-parent="#accordionFlushExample">
-                    <div class="accordion-body">The probability of rolling a 5 is ~<strong>11.11%</strong></div>
-                </div>
-            </div>
-
-            <!-- 6 -->
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="flush-headingSix">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseSix" aria-expanded="false" aria-controls="flush-collapseSix">
-                        6 Probability
-                    </button>
-                </h2>
-                <div id="flush-collapseSix" class="accordion-collapse collapse" aria-labelledby="flush-headingSix" data-bs-parent="#accordionFlushExample">
-                    <div class="accordion-body">The probability of rolling a 6 is ~<strong>13.89%</strong></div>
-                </div>
-            </div>
-
-            <!-- 7 -->
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="flush-headingSeven">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseSeven" aria-expanded="false" aria-controls="flush-collapseSeven">
-                        7 Probability
-                    </button>
-                </h2>
-                <div id="flush-collapseSeven" class="accordion-collapse collapse" aria-labelledby="flush-headingSeven" data-bs-parent="#accordionFlushExample">
-                    <div class="accordion-body">The probability of rolling a 7 is ~<strong>16.67%</strong></div>
-                </div>
-            </div>
-
-            <!-- 8 -->
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="flush-headingEight">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseEight" aria-expanded="false" aria-controls="flush-collapseEight">
-                        8 Probability
-                    </button>
-                </h2>
-                <div id="flush-collapseEight" class="accordion-collapse collapse" aria-labelledby="flush-headingEight" data-bs-parent="#accordionFlushExample">
-                    <div class="accordion-body">The probability of rolling an 8 is ~<strong>13.89%</strong></div>
-                </div>
-            </div>
-
-            <!-- 9 -->
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="flush-headingNine">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseNine" aria-expanded="false" aria-controls="flush-collapseNine">
-                        9 Probability
-                    </button>
-                </h2>
-                <div id="flush-collapseNine" class="accordion-collapse collapse" aria-labelledby="flush-headingNine" data-bs-parent="#accordionFlushExample">
-                    <div class="accordion-body">The probability of rolling a 9 is ~<strong>11.11%</strong></div>
-                </div>
-            </div>
-
-            <!-- 10 -->
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="flush-headingTen">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTen" aria-expanded="false" aria-controls="flush-collapseTen">
-                        10 Probability
-                    </button>
-                </h2>
-                <div id="flush-collapseTen" class="accordion-collapse collapse" aria-labelledby="flush-headingTen" data-bs-parent="#accordionFlushExample">
-                    <div class="accordion-body">The probability of rolling a 10 is ~<strong>8.33%</strong></div>
-                </div>
-            </div>
-
-            <!-- 11 -->
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="flush-headingEleven">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseEleven" aria-expanded="false" aria-controls="flush-collapseEleven">
-                        11 Probability
-                    </button>
-                </h2>
-                <div id="flush-collapseEleven" class="accordion-collapse collapse" aria-labelledby="flush-headingEleven" data-bs-parent="#accordionFlushExample">
-                    <div class="accordion-body">The probability of rolling an 11 is ~<strong>5.56%</strong></div>
-                </div>
-            </div>
-
-            <!-- 12 -->
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="flush-headingTwelve">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwelve" aria-expanded="false" aria-controls="flush-collapseTwelve">
-                        12 Probability
-                    </button>
-                </h2>
-                <div id="flush-collapseTwelve" class="accordion-collapse collapse" aria-labelledby="flush-headingTwelve" data-bs-parent="#accordionFlushExample">
-                    <div class="accordion-body">The probability of rolling a 12 is ~<strong>2.78%</strong></div>
-                </div>
-            </div>
-        </div>
+       
     </main>
-    <!-- Bootstrap JS (required for accordion to work) -->
+    
 
 </body>
 
