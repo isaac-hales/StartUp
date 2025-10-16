@@ -66,21 +66,21 @@ I am going to use the required technologies in the following ways.
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Server deployed and accessible with custom domain name** - [My server link](https://yourdomainnamehere.click).
+- [x] **Server deployed and accessible with custom domain name** - [My server link](https://yourdomainnamehere.click).
 
 ## 🚀 HTML deliverable
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [x] **HTML pages** - I did not complete this part of the deliverable.
-- [x] **Proper HTML element usage** - I did not complete this part of the deliverable.
-- [x] **Links** - I did not complete this part of the deliverable.
-- [x] **Text** - I did not complete this part of the deliverable.
-- [x] **3rd party API placeholder** - I did not complete this part of the deliverable.
-- [x] **Images** - I did not complete this part of the deliverable.
-- [x] **Login placeholder** - I did not complete this part of the deliverable.
-- [x] **DB data placeholder** - I did not complete this part of the deliverable.
-- [x] **WebSocket placeholder** - I did not complete this part of the deliverable.
+- [x] **HTML pages** - 
+- [x] **Proper HTML element usage** - 
+- [x] **Links** - I did complete this part of the deliverable.
+- [x] **Text** - I did complete this part of the deliverable.
+- [x] **3rd party API placeholder** - It will insert images of Axilotls. Because I like them. And also mudkip is based on an Axilotl. 
+- [x] **Images** - I did complete this part of the deliverable.
+- [x] **Login placeholder** - I did complete this part of the deliverable.
+- [x] **DB data placeholder** - I did complete this part of the deliverable.
+- [x] **WebSocket placeholder** - I did complete this part of the deliverable.
 
 ## 🚀 CSS deliverable
 
@@ -88,18 +88,18 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 - [x] **Header, footer, and main content body** - I did complete this part of the deliverable.
 - [x] **Navigation elements** - I did complete this part of the deliverable.
-- [x] **Responsive to window resizing** - I did not complete this part of the deliverable.
-- [x] **Application elements** - I did not complete this part of the deliverable.
-- [x] **Application text content** - I did not complete this part of the deliverable.
-- [x] **Application images** - I did not complete this part of the deliverable.
+- [x] **Responsive to window resizing** - I did complete this part of the deliverable.
+- [x] **Application elements** - I did complete this part of the deliverable.
+- [x] **Application text content** - I did complete this part of the deliverable.
+- [x] **Application images** - I did complete this part of the deliverable.
 
 ## 🚀 React part 1: Routing deliverable
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Bundled using Vite** - I did not complete this part of the deliverable.
-- [ ] **Components** - I did not complete this part of the deliverable.
-- [ ] **Router** - I did not complete this part of the deliverable.
+- [x] **Bundled using Vite** - I did complete this part of the deliverable.
+- [x] **Components** - I did complete this part of the deliverable.
+- [x] **Router** - I did complete this part of the deliverable.
 
 ## 🚀 React part 2: Reactivity deliverable
 
