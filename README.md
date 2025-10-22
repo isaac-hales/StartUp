@@ -105,8 +105,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **All functionality implemented or mocked out** - I did not complete this part of the deliverable.
-- [ ] **Hooks** - I did not complete this part of the deliverable.
+- [x] **All functionality implemented or mocked out** - I worked implemented dice rolls and buttons that mark when the player has gone. I still need to have it add up scores based on marked boxes and substract points from the strikes a player gets. 
+- [x] **Hooks** - Used for the axlotl image API thing
 
 ## 🚀 Service deliverable
 
