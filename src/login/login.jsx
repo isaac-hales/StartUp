@@ -3,8 +3,6 @@ import React from 'react';
 export function Login() {
   return (
      <main>
-            {/*https://theaxolotlapi.netlify.app/ */}
-            {/*<!-- This will be an API that will give random pictures of an axolotl. -->*/}
             <img src="dice.png" width="335" height="316" alt="dice" />
             <section>
             <h1> LOGIN PAGE </h1>
