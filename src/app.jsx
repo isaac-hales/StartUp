@@ -1,10 +1,23 @@
-import React from "react";
-import { NavLink, Route, Routes } from 'react-router-dom';
+import React, { useState } from "react";
+import { NavLink, Route, Routes, Navigate } from 'react-router-dom';
 import { Login } from './login/login';
 import { Play } from './play/play';
 import { Homepage } from './homepage/homepage';
 
 export default function App() {
+  const [authState, setAuthState] = useState(false); // Track if user is logged in
+  const [username, setUsername] = useState('');
+
+  const handleLogin = (user) => {
+    setAuthState(true);
+    setUsername(user);
+  };
+
+  const handleLogout = () => {
+    setAuthState(false);
+    setUsername('');
+  };
+
   return (
     <div className="body bg-dark text-light">
       <header className="container-fluid">
@@ -15,7 +28,7 @@ export default function App() {
           padding: '10px 20px'
         }}>
           <div className="navbar-brand">
-            Qwixx Online
+            Qwixx Online {username && `- Welcome, ${username}!`}
           </div>
           <menu style={{
             display: 'flex',
@@ -30,15 +43,27 @@ export default function App() {
                 Homepage
               </NavLink>
             </li>
+            {authState && (
+              <li className="nav-item">
+                <NavLink className="nav-link" to="/play">
+                  Play
+                </NavLink>
+              </li>
+            )}
             <li className="nav-item">
-              <NavLink className="nav-link" to="/play">
-                Play
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/login">
-                Login
-              </NavLink>
+              {authState ? (
+                <button 
+                  className="nav-link btn btn-link" 
+                  onClick={handleLogout}
+                  style={{border: 'none', background: 'none'}}
+                >
+                  Logout
+                </button>
+              ) : (
+                <NavLink className="nav-link" to="/login">
+                  Login
+                </NavLink>
+              )}
             </li>
           </menu>
         </nav>
@@ -51,8 +76,14 @@ export default function App() {
       }}>
         <Routes>
           <Route path="/" element={<Homepage />} />
-          <Route path="/play" element={<Play />} />
-          <Route path="/login" element={<Login />} />
+          <Route 
+            path="/play" 
+            element={authState ? <Play username={username} /> : <Navigate to="/login" />} 
+          />
+          <Route 
+            path="/login" 
+            element={<Login onLogin={handleLogin} />} 
+          />
         </Routes>
       </main>
 
