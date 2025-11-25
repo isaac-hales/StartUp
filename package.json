@@ -1,7 +1,7 @@
 {
   "name": "start-up-html",
   "version": "1.0.0",
-  "description": "",
+  "description": "> [!NOTE]\r >  If you are not familiar with Markdown then you should review the [documentation](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) before continuing.",
   "main": "index.js",
   "scripts": {
     "dev": "vite",
@@ -15,8 +15,21 @@
     "vite": "^7.1.9"
   },
   "dependencies": {
+    "bcryptjs": "^3.0.3",
     "bootstrap": "^5.3.8",
+    "cookie-parser": "^1.4.7",
+    "express": "^5.1.0",
+    "mongodb": "^6.20.0",
     "react-bootstrap": "^2.10.10",
-    "react-router-dom": "^7.9.4"
-  }
+    "react-router-dom": "^7.9.4",
+    "uuid": "^13.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/isaac-hales/StartUp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/isaac-hales/StartUp/issues"
+  },
+  "homepage": "https://github.com/isaac-hales/StartUp#readme"
 }

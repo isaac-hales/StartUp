@@ -43,13 +43,12 @@ export default function App() {
                 Homepage
               </NavLink>
             </li>
-            {authState && (
-              <li className="nav-item">
-                <NavLink className="nav-link" to="/play">
-                  Play
-                </NavLink>
-              </li>
-            )}
+            {/* CHANGED: Show Play link for everyone, not just authenticated users */}
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/play">
+                Play
+              </NavLink>
+            </li>
             <li className="nav-item">
               {authState ? (
                 <button 
@@ -76,9 +75,10 @@ export default function App() {
       }}>
         <Routes>
           <Route path="/" element={<Homepage />} />
+          {/* CHANGED: Remove authentication check, allow everyone to access */}
           <Route 
             path="/play" 
-            element={authState ? <Play username={username} /> : <Navigate to="/login" />} 
+            element={<Play username={username} />} 
           />
           <Route 
             path="/login" 
