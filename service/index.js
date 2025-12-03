@@ -36,7 +36,7 @@ app.use(express.json());
 // Use the cookie parser middleware for tracking authentication tokens
 app.use(cookieParser());
 
-// Serve up the front-end static content hosting (from dist folder, not public)
+// Serve up the front-end static content hosting (from dist folder)
 app.use(express.static('dist'));
 
 // Trust proxy for secure cookies (needed for production)
@@ -49,14 +49,14 @@ app.use(`/api`, apiRouter);
 // CreateAuth - create a new user
 apiRouter.post('/auth/create', async (req, res) => {
   try {
-    const existingUser = await usersCollection.findOne({ username: req.body.username });
+    const existingUser = await usersCollection.findOne({ email: req.body.email });
     
     if (existingUser) {
       res.status(409).send({ msg: 'Existing user' });
     } else {
-      const user = await createUser(req.body.username, req.body.password);
+      const user = await createUser(req.body.email, req.body.password);
       setAuthCookie(res, user.token);
-      res.send({ username: user.username });
+      res.send({ email: user.email });
     }
   } catch (error) {
     res.status(500).send({ msg: 'Error creating user', error: error.message });
@@ -66,16 +66,16 @@ apiRouter.post('/auth/create', async (req, res) => {
 // GetAuth - login an existing user
 apiRouter.post('/auth/login', async (req, res) => {
   try {
-    const user = await usersCollection.findOne({ username: req.body.username });
+    const user = await usersCollection.findOne({ email: req.body.email });
     
     if (user && await bcrypt.compare(req.body.password, user.password)) {
       const token = uuid.v4();
       await usersCollection.updateOne(
-        { username: user.username },
+        { email: user.email },
         { $set: { token: token } }
       );
       setAuthCookie(res, token);
-      res.send({ username: user.username });
+      res.send({ email: user.email });
     } else {
       res.status(401).send({ msg: 'Unauthorized' });
     }
@@ -107,7 +107,7 @@ const verifyAuth = async (req, res, next) => {
   const user = await usersCollection.findOne({ token: token });
   
   if (user) {
-    req.username = user.username; // Add username to request for later use
+    req.email = user.email; // Add email to request for later use
     next();
   } else {
     res.status(401).send({ msg: 'Unauthorized' });
@@ -131,37 +131,32 @@ apiRouter.get('/scores', verifyAuth, async (_req, res) => {
 // SubmitScore - submit a new score (requires auth)
 apiRouter.post('/score', verifyAuth, async (req, res) => {
   try {
-    const username = req.username; // From verifyAuth middleware
+    const email = req.email; // From verifyAuth middleware
     const newScore = {
-      username: username,
+      email: email,
       score: req.body.score,
       date: new Date()
     };
 
     // Check if user already has a score
-    const existingScore = await scoresCollection.findOne({ username: username });
+    const existingScore = await scoresCollection.findOne({ email: email });
     
     if (existingScore) {
       // Only update if new score is higher
       if (newScore.score > existingScore.score) {
         await scoresCollection.updateOne(
-          { username: username },
+          { email: email },
           { $set: { score: newScore.score, date: newScore.date } }
         );
+        res.send({ msg: 'New high score!', score: newScore.score, improved: true });
+      } else {
+        res.send({ msg: 'Score saved, but not a new high score', score: existingScore.score, improved: false });
       }
     } else {
       // Insert new score
       await scoresCollection.insertOne(newScore);
+      res.send({ msg: 'First score saved!', score: newScore.score, improved: true });
     }
-
-    // Get updated top 10 scores
-    const scores = await scoresCollection
-      .find()
-      .sort({ score: -1 })
-      .limit(10)
-      .toArray();
-    
-    res.send(scores);
   } catch (error) {
     res.status(500).send({ msg: 'Error submitting score', error: error.message });
   }
@@ -178,11 +173,11 @@ app.use((_req, res) => {
 });
 
 // Helper function to create a user
-async function createUser(username, password) {
+async function createUser(email, password) {
   const passwordHash = await bcrypt.hash(password, 10);
 
   const user = {
-    username: username,
+    email: email,
     password: passwordHash,
     token: uuid.v4(),
     createdAt: new Date()
