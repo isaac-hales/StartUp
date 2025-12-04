@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { NavLink, Route, Routes, Navigate } from 'react-router-dom';
+import { NavLink, Route, Routes } from 'react-router-dom';
 import { Login } from './login/login';
 import { Play } from './play/play';
 import { Homepage } from './homepage/homepage';
+import { Leaderboard } from './leaderboard/leaderboard';
 
 export default function App() {
-  const [authState, setAuthState] = useState(false); // Track if user is logged in
+  const [authState, setAuthState] = useState(false);
   const [username, setUsername] = useState('');
 
   const handleLogin = (user) => {
@@ -43,10 +44,14 @@ export default function App() {
                 Homepage
               </NavLink>
             </li>
-            {/* CHANGED: Show Play link for everyone, not just authenticated users */}
             <li className="nav-item">
               <NavLink className="nav-link" to="/play">
                 Play
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/leaderboard">
+                Leaderboard
               </NavLink>
             </li>
             <li className="nav-item">
@@ -75,15 +80,9 @@ export default function App() {
       }}>
         <Routes>
           <Route path="/" element={<Homepage />} />
-          {/* CHANGED: Remove authentication check, allow everyone to access */}
-          <Route 
-            path="/play" 
-            element={<Play username={username} />} 
-          />
-          <Route 
-            path="/login" 
-            element={<Login onLogin={handleLogin} />} 
-          />
+          <Route path="/play" element={<Play username={username} authState={authState} />} />
+          <Route path="/leaderboard" element={<Leaderboard />} />
+          <Route path="/login" element={<Login onLogin={handleLogin} />} />
         </Routes>
       </main>
 

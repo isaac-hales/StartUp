@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');
 const express = require('express');
 const uuid = require('uuid');
 const { MongoClient } = require('mongodb');
+const { WebSocketServer } = require('ws');
 const config = require('./dbConfig.json');
 
 const app = express();
@@ -138,6 +139,8 @@ apiRouter.post('/score', verifyAuth, async (req, res) => {
       date: new Date()
     };
 
+    let improved = false;
+
     // Check if user already has a score
     const existingScore = await scoresCollection.findOne({ email: email });
     
@@ -148,15 +151,36 @@ apiRouter.post('/score', verifyAuth, async (req, res) => {
           { email: email },
           { $set: { score: newScore.score, date: newScore.date } }
         );
-        res.send({ msg: 'New high score!', score: newScore.score, improved: true });
-      } else {
-        res.send({ msg: 'Score saved, but not a new high score', score: existingScore.score, improved: false });
+        improved = true;
       }
     } else {
       // Insert new score
       await scoresCollection.insertOne(newScore);
-      res.send({ msg: 'First score saved!', score: newScore.score, improved: true });
+      improved = true;
     }
+
+    // Get updated top 10 scores
+    const topScores = await scoresCollection
+      .find()
+      .sort({ score: -1 })
+      .limit(10)
+      .toArray();
+
+    // Broadcast score update via WebSocket if score improved
+    if (improved && app.broadcast) {
+      app.broadcast({
+        type: 'scoreUpdate',
+        email: email,
+        score: newScore.score,
+        topScores: topScores
+      });
+    }
+
+    res.send({ 
+      msg: improved ? 'New high score!' : 'Score saved, but not a new high score', 
+      score: improved ? newScore.score : existingScore.score, 
+      improved: improved 
+    });
   } catch (error) {
     res.status(500).send({ msg: 'Error submitting score', error: error.message });
   }
@@ -197,6 +221,104 @@ function setAuthCookie(res, authToken) {
   });
 }
 
-app.listen(port, () => {
+// ===== START SERVER =====
+
+const server = app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
+
+// ===== WEBSOCKET SERVER =====
+
+// Create WebSocket server
+const wss = new WebSocketServer({ noServer: true });
+
+// Handle WebSocket upgrade
+server.on('upgrade', (request, socket, head) => {
+  wss.handleUpgrade(request, socket, head, (ws) => {
+    wss.emit('connection', ws, request);
+  });
+});
+
+// Track connected clients
+let connections = [];
+
+wss.on('connection', (ws) => {
+  const connection = { id: uuid.v4(), alive: true, ws: ws };
+  connections.push(connection);
+
+  console.log(`New WebSocket connection: ${connection.id}`);
+
+  // Send welcome message
+  ws.send(JSON.stringify({ 
+    type: 'welcome', 
+    message: 'Connected to Qwixx leaderboard updates',
+    connectionCount: connections.length 
+  }));
+
+  // Broadcast connection count to all clients
+  broadcastConnectionCount();
+
+  // Handle incoming messages
+  ws.on('message', (data) => {
+    try {
+      const message = JSON.parse(data.toString());
+      console.log('Received message:', message);
+      
+      // Echo the message back or handle specific message types
+      if (message.type === 'ping') {
+        ws.send(JSON.stringify({ type: 'pong' }));
+      }
+    } catch (error) {
+      console.error('Error parsing WebSocket message:', error);
+    }
+  });
+
+  // Handle pong responses for keep-alive
+  ws.on('pong', () => {
+    connection.alive = true;
+  });
+
+  // Handle connection close
+  ws.on('close', () => {
+    console.log(`WebSocket connection closed: ${connection.id}`);
+    connections = connections.filter((c) => c.id !== connection.id);
+    broadcastConnectionCount();
+  });
+
+  // Handle errors
+  ws.on('error', (error) => {
+    console.error('WebSocket error:', error);
+  });
+});
+
+// Keep-alive ping interval (every 30 seconds)
+setInterval(() => {
+  connections.forEach((connection) => {
+    if (!connection.alive) {
+      connection.ws.terminate();
+      return;
+    }
+    connection.alive = false;
+    connection.ws.ping();
+  });
+}, 30000);
+
+// Broadcast message to all connected clients
+function broadcastMessage(message) {
+  connections.forEach((connection) => {
+    if (connection.ws.readyState === 1) { // 1 = OPEN
+      connection.ws.send(JSON.stringify(message));
+    }
+  });
+}
+
+// Broadcast connection count
+function broadcastConnectionCount() {
+  broadcastMessage({
+    type: 'connectionCount',
+    count: connections.length
+  });
+}
+
+// Export broadcast function for use in API routes
+app.broadcast = broadcastMessage;

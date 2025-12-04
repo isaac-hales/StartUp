@@ -4,15 +4,64 @@ export function Leaderboard() {
   const [scores, setScores] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [connectionCount, setConnectionCount] = useState(0);
+  const [wsConnected, setWsConnected] = useState(false);
+  const [lastUpdate, setLastUpdate] = useState(null);
 
   useEffect(() => {
     fetchScores();
+    
+    // Setup WebSocket connection
+    const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+    const wsUrl = `${protocol}//${window.location.host}/ws`;
+    const socket = new WebSocket(wsUrl);
+
+    socket.onopen = () => {
+      console.log('WebSocket connected');
+      setWsConnected(true);
+    };
+
+    socket.onmessage = (event) => {
+      try {
+        const message = JSON.parse(event.data);
+        console.log('WebSocket message received:', message);
+
+        if (message.type === 'welcome') {
+          console.log(message.message);
+          setConnectionCount(message.connectionCount || 0);
+        } else if (message.type === 'connectionCount') {
+          setConnectionCount(message.count);
+        } else if (message.type === 'scoreUpdate') {
+          // Update leaderboard in real-time
+          setScores(message.topScores);
+          setLastUpdate(`${message.email} scored ${message.score} points!`);
+          setTimeout(() => setLastUpdate(null), 5000); // Clear after 5 seconds
+        }
+      } catch (error) {
+        console.error('Error parsing WebSocket message:', error);
+      }
+    };
+
+    socket.onclose = () => {
+      console.log('WebSocket disconnected');
+      setWsConnected(false);
+    };
+
+    socket.onerror = (error) => {
+      console.error('WebSocket error:', error);
+      setWsConnected(false);
+    };
+
+    // Cleanup on unmount
+    return () => {
+      socket.close();
+    };
   }, []);
 
   const fetchScores = async () => {
     try {
       const response = await fetch('/api/scores', {
-        credentials: 'include' // Include cookies for authentication
+        credentials: 'include'
       });
 
       if (response.ok) {
@@ -36,7 +85,43 @@ export function Leaderboard() {
       maxWidth: '600px',
       margin: '0 auto'
     }}>
-      <h1 style={{textAlign: 'center', color: '#007bff'}}>🏆 Leaderboard 🏆</h1>
+      <h1 style={{textAlign: 'center', color: '#007bff'}}>🏆 Live Leaderboard 🏆</h1>
+      
+      {/* WebSocket Status */}
+      <div style={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        padding: '10px 15px',
+        marginBottom: '20px',
+        backgroundColor: wsConnected ? '#d4edda' : '#f8d7da',
+        color: wsConnected ? '#155724' : '#721c24',
+        borderRadius: '8px',
+        fontSize: '14px'
+      }}>
+        <span>
+          {wsConnected ? '🟢 Live Updates Active' : '🔴 Disconnected'}
+        </span>
+        <span>
+          👥 {connectionCount} viewer{connectionCount !== 1 ? 's' : ''} online
+        </span>
+      </div>
+
+      {/* Live Update Notification */}
+      {lastUpdate && (
+        <div style={{
+          padding: '15px',
+          marginBottom: '20px',
+          backgroundColor: '#fff3cd',
+          color: '#856404',
+          borderRadius: '8px',
+          textAlign: 'center',
+          fontWeight: 'bold',
+          animation: 'fadeIn 0.3s ease-in'
+        }}>
+          🎉 {lastUpdate}
+        </div>
+      )}
       
       {loading ? (
         <div style={{textAlign: 'center', padding: '40px'}}>
@@ -137,6 +222,13 @@ export function Leaderboard() {
           Refresh Leaderboard
         </button>
       </div>
+
+      <style>{`
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(-10px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+      `}</style>
     </main>
   );
 }
