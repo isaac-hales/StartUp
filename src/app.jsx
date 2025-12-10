@@ -89,8 +89,8 @@ export default function App() {
       <footer className="bg-dark text-white-50" style={{padding: '20px'}}>
         <div className="container-fluid">
           <span className="text-reset">Isaac Hales </span>
-          <a className="text-reset" href="https://github.com/isaac-hales/StartUp">
-             Github Repository
+          <a className="text-reset" href="https://github.com/isaac-hales/StartUp" target="_blank" rel="noopener noreferrer">
+             GitHub Repository
           </a>
         </div>
       </footer>
